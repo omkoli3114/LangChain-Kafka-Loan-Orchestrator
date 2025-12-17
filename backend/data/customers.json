@@ -1,0 +1,112 @@
+[
+  {
+    "id": "CUST001",
+    "name": "Arjun Sharma",
+    "age": 35,
+    "city": "Mumbai",
+    "phone": "9876543210",
+    "address": "101, Sea View Apts, Bandra West, Mumbai",
+    "current_loan": 0,
+    "credit_score": 750,
+    "pre_approved_limit": 500000
+  },
+  {
+    "id": "CUST002",
+    "name": "Priya Verma",
+    "age": 28,
+    "city": "Delhi",
+    "phone": "9988776655",
+    "address": "205, Green Park, New Delhi",
+    "current_loan": 200000,
+    "credit_score": 820,
+    "pre_approved_limit": 800000
+  },
+  {
+    "id": "CUST003",
+    "name": "Rahul Singh",
+    "age": 42,
+    "city": "Bangalore",
+    "phone": "9123456789",
+    "address": "Villa 12, Palm Meadows, Whitefield, Bangalore",
+    "current_loan": 0,
+    "credit_score": 680,
+    "pre_approved_limit": 200000
+  },
+  {
+    "id": "CUST004",
+    "name": "Sneha Gupta",
+    "age": 30,
+    "city": "Pune",
+    "phone": "9812345678",
+    "address": "Flat 4B, Blue Sky Towers, Koregaon Park, Pune",
+    "current_loan": 50000,
+    "credit_score": 710,
+    "pre_approved_limit": 400000
+  },
+  {
+    "id": "CUST005",
+    "name": "Vikram Patel",
+    "age": 45,
+    "city": "Ahmedabad",
+    "phone": "9000012345",
+    "address": "56, Royal Enclave, Bodakdev, Ahmedabad",
+    "current_loan": 1000000,
+    "credit_score": 880,
+    "pre_approved_limit": 1500000
+  },
+  {
+    "id": "CUST006",
+    "name": "Anjali Das",
+    "age": 26,
+    "city": "Kolkata",
+    "phone": "8989898989",
+    "address": "12/A, Park Street, Kolkata",
+    "current_loan": 0,
+    "credit_score": 500,
+    "pre_approved_limit": 0
+  },
+  {
+    "id": "CUST007",
+    "name": "Rohan Mehta",
+    "age": 38,
+    "city": "Hyderabad",
+    "phone": "7878787878",
+    "address": "H.No 8-2, Banjara Hills, Hyderabad",
+    "current_loan": 300000,
+    "credit_score": 790,
+    "pre_approved_limit": 600000
+  },
+  {
+    "id": "CUST008",
+    "name": "Kavita Reddy",
+    "age": 50,
+    "city": "Chennai",
+    "phone": "6767676767",
+    "address": "45, Anna Nagar East, Chennai",
+    "current_loan": 0,
+    "credit_score": 725,
+    "pre_approved_limit": 550000
+  },
+  {
+    "id": "CUST009",
+    "name": "Amit Joshi",
+    "age": 33,
+    "city": "Indore",
+    "phone": "5656565656",
+    "address": "Sector C, Scheme 74, Indore",
+    "current_loan": 150000,
+    "credit_score": 650,
+    "pre_approved_limit": 100000
+  },
+  {
+    "id": "CUST010",
+    "name": "Neha Kapoor",
+    "age": 29,
+    "city": "Chandigarh",
+    "phone": "4545454545",
+    "address": "House 204, Sector 17, Chandigarh",
+    "current_loan": 0,
+    "credit_score": 890,
+    "pre_approved_limit": 1000000
+  }
+]

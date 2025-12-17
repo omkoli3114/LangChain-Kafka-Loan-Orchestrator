@@ -1,0 +1,24 @@
+// CapitalConnect Logic Flow
+digraph {
+	rankdir=TB
+	ratio=fill
+	node [fillcolor=lightblue shape=box style=filled]
+	Start [label="Start: User Lands on Chatbot" fillcolor=lightgrey shape=oval]
+	Input [label="Input: Name, Income, PAN"]
+	Process1 [label="Process 1: Master Agent Receives Data"]
+	Decision1 [label="Decision 1: Credit Score > 700?" fillcolor=orange shape=diamond]
+	EndReject [label="End: Rejection Message" fillcolor=lightgrey shape=oval]
+	Decision2 [label="Decision 2: EMI < 50% Salary?" fillcolor=orange shape=diamond]
+	Process2 [label="Process 2: Loan Approved"]
+	Output [label="Output: Generate Sanction Letter (PDF)"]
+	EndSuccess [label="End: Display Download Link" fillcolor=lightgrey shape=oval]
+	Start -> Input
+	Input -> Process1
+	Process1 -> Decision1
+	Decision1 -> EndReject [label=No]
+	Decision1 -> Decision2 [label=Yes]
+	Decision2 -> EndReject [label=No]
+	Decision2 -> Process2 [label=Yes]
+	Process2 -> Output
+	Output -> EndSuccess
+}

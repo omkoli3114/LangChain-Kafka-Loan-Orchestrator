@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+fastapi
+uvicorn
+google-genai
+reportlab
+python-multipart
+pydantic
+python-dotenv
+reportlab
+python-multipart
+pydantic
+python-dotenv
+diagrams
+graphviz
+
