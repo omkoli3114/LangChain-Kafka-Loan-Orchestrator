@@ -87,9 +87,13 @@ def get_credit_api(customer_id: str):
 
 # Agent Direct Endpoints (for testing/debug)
 
-@app.get("/agent/verify")
-def agent_verify(phone: str, address: str):
-    return verify.verify_kyc(phone, address)
+@app.get("/agent/otp/send")
+def agent_otp_send(phone: str):
+    return verify.send_otp(phone)
+
+@app.get("/agent/otp/verify")
+def agent_otp_verify(phone: str, code: str):
+    return verify.verify_otp(phone, code)
 
 @app.get("/agent/sales")
 def agent_sales(amount: float, limit: float):

@@ -13,4 +13,5 @@ pydantic
 python-dotenv
 diagrams
 graphviz
+kafka-python
 

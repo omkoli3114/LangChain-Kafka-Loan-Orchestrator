@@ -1,5 +1,16 @@
 [
   {
+    "id": "CUST011",
+    "name": "Om",
+    "age": 25,
+    "city": "Delhi",
+    "phone": "9307666607",
+    "address": "205, Green Park, New Delhi",
+    "current_loan": 0,
+    "credit_score": 780,
+    "pre_approved_limit": 600000
+  },
+  {
     "id": "CUST001",
     "name": "Arjun Sharma",
     "age": 35,

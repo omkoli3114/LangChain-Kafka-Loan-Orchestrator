@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 import json
 from agents import sales, verify, underwriting, sanction
 from mock_servers import crm, offer, credit
+from streaming.producer import producer
+import functools
 
 # Load environment variables
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
@@ -30,41 +32,61 @@ Your goal is to persuasively sell personal loans to customers while accurate val
 You must be friendly, professional, and convincing. Use natural language.
 
 You have access to the following tools/functions:
-1. `validate_customer(phone, address)`: Verifies customer KYC.
-2. `check_offer(customer_id)`: Checks pre-approved limit.
-3. `negotiate_terms(amount, limit)`: Returns interest rate terms.
-4. `evaluate_application(credit_score, amount, limit, salary)`: Underwrites the loan.
-5. `generate_sanction_letter(name, amount, tenure, rate)`: Generates the final letter.
+1. `send_otp(phone)`: Sends an OTP to verify the customer's phone number.
+2. `verify_otp(phone, code)`: Validates the OTP provided by the user. If valid, this also performs KYC lookups.
+3. `check_offer(customer_id)`: Checks pre-approved limit.
+4. `negotiate_terms(amount, limit)`: Returns interest rate terms.
+5. `evaluate_application(credit_score, amount, limit, salary)`: Underwrites the loan.
+6. `generate_sanction_letter(name, amount, tenure, rate)`: Generates the final letter.
 
 Process:
-1. Greet the customer and ask for their Phone Number to verify their account.
-2. Call `validate_customer`. If failed, ask again or reject nicely.
-3. If verified, call `check_offer` to see their limit.
-4. Inform them of their pre-approved limit enthusiastically. Ask how much they need.
-5. Once they state an amount, Call `negotiate_terms`.
+1. Greet the customer and ask for their Phone Number to start verification.
+2. Call `send_otp(phone)`. Inform the customer that an OTP has been sent and ask them to enter it.
+3. Once the user provides the OTP, call `verify_otp(phone, code)`.
+   - If verification fails (invalid OTP), ask them to try again.
+   - If verified, proceed to check their offer.
+4. Call `check_offer` to see their limit.
+5. Inform them of their pre-approved limit enthusiastically. Ask how much they need.
+6. Once they state an amount, Call `negotiate_terms`.
    - If terms are base rate (12%), pitch it as a special offer.
    - If higher rate (14%), justify it (e.g., higher risk/amount).
-6. Ask for the tenure (in months).
-7. Perform underwriting using `evaluate_application`. You need the credit score (call internal mock data or ask user? The system has mock credit data).
+7. Ask for the tenure (in months).
+8. Perform underwriting using `evaluate_application`. You need the credit score (call internal mock data or ask user? The system has mock credit data).
    - Actually, you should look up their credit score using `get_credit_score` (internal tool) before underwriting.
    - If `evaluate_application` returns REQUEST_SALARY_SLIP, ask the user to upload their salary slip.
    - If REJECT, explain politely.
    - If APPROVE, proceed.
-8. If Approved, confirm final details and call `generate_sanction_letter`.
-9. Send the letter and close the sale.
+9. If Approved, confirm final details and call `generate_sanction_letter`.
+10. Send the letter and close the sale.
 
 Always maintain context. Remember what the user said.
 """
 
 # Tools Helper
 # The new SDK creates tools from functions automatically cleanly.
+
+def event_wrapper(func, event_type):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        # Publish event
+        payload = {
+            "function": func.__name__,
+            "args": args,
+            "result": result
+        }
+        producer.send_event("capital_connect_events", event_type, payload)
+        return result
+    return wrapper
+
 tool_functions = [
-    verify.verify_kyc,
-    offer.get_offer,
-    credit.get_credit_score,
-    sales.negotiate_loan,
-    underwriting.evaluate_loan,
-    sanction.generate_sanction
+    event_wrapper(verify.send_otp, "OTP_SEND"),
+    event_wrapper(verify.verify_otp, "OTP_VERIFY"),
+    event_wrapper(offer.get_offer, "OFFER_CHECK"),
+    event_wrapper(credit.get_credit_score, "CREDIT_CHECK"),
+    event_wrapper(sales.negotiate_loan, "NEGOTIATION"),
+    event_wrapper(underwriting.evaluate_loan, "UNDERWRITING"),
+    event_wrapper(sanction.generate_sanction, "SANCTION_GENERATED")
 ]
 
 class ChatSession:

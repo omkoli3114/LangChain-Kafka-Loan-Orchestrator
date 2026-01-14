@@ -1,53 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capital Connect - Premium Personal Loans</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <div class="app-container">
-        <header>
-            <div class="logo">
-                <i class="fa-solid fa-layer-group"></i>
-                <span>Capital Connect</span>
-            </div>
-            <div class="status-indicator">
-                <span class="dot"></span> Online
-            </div>
-        </header>
-
-        <main class="chat-area" id="chat-history">
-            <div class="message bot-message">
-                <div class="avatar">
-                    <i class="fa-solid fa-robot"></i>
-                </div>
-                <div class="bubble">
-                    Hello! I'm your Capital Connect personal loan assistant. How can I help you today?
-                </div>
-            </div>
-        </main>
-
-        <footer class="input-area">
-            <label for="file-upload" class="attach-btn" title="Upload Salary Slip">
-                <i class="fa-solid fa-paperclip"></i>
-            </label>
-            <input type="file" id="file-upload" accept=".pdf,.png,.jpg,.jpeg" hidden>
-            
-            <input type="text" id="user-input" placeholder="Type your message here..." autocomplete="off">
-            
-            <button id="send-btn">
-                <i class="fa-solid fa-paper-plane"></i>
-            </button>
-        </footer>
-    </div>
-
-    <!-- Notification Container -->
-    <div id="notification-container"></div>
-
-    <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frontend</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
