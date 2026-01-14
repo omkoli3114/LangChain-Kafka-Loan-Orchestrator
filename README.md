@@ -105,7 +105,7 @@ docker-compose up -d
 
 1.  Open the frontend in your browser.
 2.  Start a conversation (e.g., "Hi, I'm looking for a loan").
-3.  The agent will ask for your phone number. Use one of the test numbers from `backend/data/customers.json` (e.g., `9307666607`, `9876543210`).
+3.  The agent will ask for your phone number. Use one of the test numbers from `backend/data/customers.json` (e.g., `9876543210`, `9988776655`).
 4.  Enter the OTP (simulated, any 4-digit code usually works in dev mode unless strict checking is enabled).
 5.  Negotiate the loan amount and tenure.
 6.  If required (loan > 2x limit), upload a dummy salary slip image.
